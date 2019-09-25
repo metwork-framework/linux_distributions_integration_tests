@@ -12,6 +12,16 @@ install_yum_common: &install_yum_common
     - cd src && git checkout ${DRONE_BRANCH}
     - cd integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 
+install_urpmi_common: &install_urpmi_common
+  image: ${IMAGE}
+  commands:
+    - urpmi.addmedia metwork http://metwork-framework.org/pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable/
+    - yes |urpmi git wget
+    - yes |urpmi metwork-mfext-full
+    - git clone https://github.com/metwork-framework/mfext src
+    - cd src && git checkout ${DRONE_BRANCH}
+    - cd integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+
 pipeline:
   install_centos6:
     <<: *install_yum_common
@@ -38,6 +48,16 @@ pipeline:
     when:
       matrix:
         IMAGE: fedora:30
+  install_mageia6:
+    <<: *install_urpmi_common
+    when:
+      matrix:
+        IMAGE: mageia:6
+  install_mageia7:
+    <<: *install_urpmi_common
+    when:
+      matrix:
+        IMAGE: mageia:7
 
 matrix:
   IMAGE:
