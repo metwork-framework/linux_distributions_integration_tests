@@ -16,8 +16,18 @@ install_urpmi_common: &install_urpmi_common
   image: ${IMAGE}
   commands:
     - urpmi.addmedia metwork http://metwork-framework.org/pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable/
+    - yes |urpmi.update -a
     - yes |urpmi git wget
     - yes |urpmi metwork-mfext-full
+    - git clone https://github.com/metwork-framework/mfext src
+    - cd src && git checkout ${DRONE_BRANCH}
+    - cd integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+
+install_zypper_common: &install_zypper_common
+  image: ${IMAGE}
+  commands:
+    - zypper ar -G http://metwork-framework.org/pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable/ metwork
+    - zypper -n install git metwork-mfext-full
     - git clone https://github.com/metwork-framework/mfext src
     - cd src && git checkout ${DRONE_BRANCH}
     - cd integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
@@ -58,6 +68,21 @@ pipeline:
     when:
       matrix:
         IMAGE: mageia:7
+  install_suse_leap15.0:
+    <<: *install_zypper_common
+    when:
+      matrix:
+        IMAGE: opensuse/leap:15.0
+  install_suse_leap15.1:
+    <<: *install_zypper_common
+    when:
+      matrix:
+        IMAGE: opensuse/leap:15.1
+  install_suse_leap42.3:
+    <<: *install_zypper_common
+    when:
+      matrix:
+        IMAGE: opensuse/leap:42.3
 
 matrix:
   IMAGE:
