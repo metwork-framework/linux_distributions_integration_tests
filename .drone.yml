@@ -88,7 +88,7 @@ matrix:
   IMAGE:
     - centos:centos6
     - centos:centos7
-    - roboxes/centos8
+    - centos:centos8
     - fedora:29
     - fedora:30
     - opensuse/leap:15.0
@@ -96,3 +96,5 @@ matrix:
     - opensuse/leap:42.3
     - mageia:6
     - mageia:7
+
+branches: [ master, integration, experimental*, ci_*, pci_*, release_* ]
