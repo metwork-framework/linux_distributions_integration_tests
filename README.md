@@ -7,6 +7,7 @@
 
 
 
+
 [![Drone CI](http://metwork-framework.org:8000/api/badges/metwork-framework/linux_distributions_integration_tests/status.svg)](http://metwork-framework.org:8000/metwork-framework/linux_distributions_integration_tests)
 [![Maintenance](https://github.com/metwork-framework/resources/blob/master/badges/maintained.svg)]()
 [![Gitter](https://github.com/metwork-framework/resources/blob/master/badges/community-en.svg)](https://gitter.im/metwork-framework/community-en?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
