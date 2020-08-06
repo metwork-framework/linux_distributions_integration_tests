@@ -1,10 +1,9 @@
 [![logo](https://raw.githubusercontent.com/metwork-framework/resources/master/logos/metwork-white-logo-small.png)](http://www.metwork-framework.org)
 # linux_distributions_integration_tests
 
-[//]: # (automatically generated from https://github.com/metwork-framework/resources/blob/master/cookiecutter/_%7B%7Bcookiecutter.repo%7D%7D/README.md)
+[//]: # (automatically generated from https://github.com/metwork-framework/github_organization_management/blob/master/common_files/README.md)
 
 **Status (master branch)**
-
 
 
 
@@ -14,19 +13,12 @@
 [![Gitter](https://github.com/metwork-framework/resources/blob/master/badges/community-fr.svg)](https://gitter.im/metwork-framework/community-fr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
-[//]: # (TABLE_OF_CONTENTS_PLACEHOLDER)
-
 
 ## What is MetWork FrameWork?
 
 [MetWork Framework](https://metwork-framework.org) is an opensource system
 for building and managing production grade applications or micro-services
 (from development to operations).
-
-
-
-
-
 
 
 
