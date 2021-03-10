@@ -86,7 +86,7 @@ pipeline:
 
 matrix:
   IMAGE:
-    - centos:centos6
+    - metwork/centos6:latest
     - centos:centos7
     - centos:centos8
     - fedora:29
