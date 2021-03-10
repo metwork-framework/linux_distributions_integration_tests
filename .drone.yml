@@ -37,7 +37,7 @@ pipeline:
     <<: *install_yum_common
     when:
       matrix:
-        IMAGE: centos:centos6
+        IMAGE: metwork/centos6:latest
   install_centos7:
     <<: *install_yum_common
     when:
@@ -86,7 +86,7 @@ pipeline:
 
 matrix:
   IMAGE:
-    - centos:centos6
+    - metwork/centos6:latest
     - centos:centos7
     - centos:centos8
     - fedora:29
