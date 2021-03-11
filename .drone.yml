@@ -17,7 +17,7 @@ install_urpmi_common: &install_urpmi_common
   commands:
     - urpmi.addmedia metwork http://metwork-framework.org/pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable/
     - yes |urpmi.update -a
-    - yes |urpmi git wget
+    - yes |urpmi git wget procmail
     - yes |urpmi metwork-mfext-full
     - git clone https://github.com/metwork-framework/mfext src
     - cd src && git checkout ${DRONE_BRANCH}
