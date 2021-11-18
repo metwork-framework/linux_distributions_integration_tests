@@ -17,6 +17,7 @@ install_urpmi_common: &install_urpmi_common
   commands:
     - urpmi.addmedia metwork http://metwork-framework.org/pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable/
     - yes |urpmi.update -a
+    - yes | urpmi lib64apr-util1_0
     - yes |urpmi git wget procmail
     - yes |urpmi metwork-mfext-full
     - git clone https://github.com/metwork-framework/mfext src
@@ -58,16 +59,16 @@ pipeline:
     when:
       matrix:
         IMAGE: fedora:30
-  install_mageia6:
-    <<: *install_urpmi_common
-    when:
-      matrix:
-        IMAGE: mageia:6
   install_mageia7:
     <<: *install_urpmi_common
     when:
       matrix:
         IMAGE: mageia:7
+  install_mageia8:
+    <<: *install_urpmi_common
+    when:
+      matrix:
+        IMAGE: mageia:8
   install_suse_leap15.0:
     <<: *install_zypper_common
     when:
@@ -86,6 +87,7 @@ pipeline:
 
 matrix:
   IMAGE:
+    - mageia:8
     - metwork/centos6:latest
     - centos:centos7
     - centos:centos8
@@ -94,7 +96,6 @@ matrix:
     - opensuse/leap:15.0
     - opensuse/leap:15.1
     - opensuse/leap:42.3
-    - mageia:6
     - mageia:7
 
 branches: [ master, integration, experimental*, ci_*, pci_*, release_* ]
