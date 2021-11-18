@@ -58,16 +58,16 @@ pipeline:
     when:
       matrix:
         IMAGE: fedora:30
-  install_mageia6:
-    <<: *install_urpmi_common
-    when:
-      matrix:
-        IMAGE: mageia:6
   install_mageia7:
     <<: *install_urpmi_common
     when:
       matrix:
         IMAGE: mageia:7
+  install_mageia8:
+    <<: *install_urpmi_common
+    when:
+      matrix:
+        IMAGE: mageia:8
   install_suse_leap15.0:
     <<: *install_zypper_common
     when:
