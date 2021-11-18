@@ -32,7 +32,6 @@ install_zypper_common: &install_zypper_common
     - git clone https://github.com/metwork-framework/mfext src
     - cd src && git checkout ${DRONE_BRANCH}
     - cd integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-
 pipeline:
   install_centos6:
     <<: *install_yum_common
@@ -90,12 +89,11 @@ matrix:
     - metwork/centos6:latest
     - centos:centos7
     - centos:centos8
-    - mageia:7
-    - mageia:8
     - fedora:29
     - fedora:30
     - opensuse/leap:15.0
     - opensuse/leap:15.1
     - opensuse/leap:42.3
+    - mageia:7
 
 branches: [ master, integration, experimental*, ci_*, pci_*, release_* ]
