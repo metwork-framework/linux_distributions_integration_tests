@@ -97,5 +97,6 @@ matrix:
     - opensuse/leap:15.1
     - opensuse/leap:42.3
     - mageia:7
+    - mageia:8
 
 branches: [ master, integration, experimental*, ci_*, pci_*, release_* ]
