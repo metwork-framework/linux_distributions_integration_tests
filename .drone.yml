@@ -33,16 +33,11 @@ install_zypper_common: &install_zypper_common
     - cd src && git checkout ${DRONE_BRANCH}
     - cd integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 pipeline:
-  install_centos6:
+  install_rockylinux8:
     <<: *install_yum_common
     when:
       matrix:
-        IMAGE: metwork/centos6:latest
-  install_centos7:
-    <<: *install_yum_common
-    when:
-      matrix:
-        IMAGE: centos:centos7
+        IMAGE: rockylinux/rockylinux:8
   install_centos8:
     <<: *install_yum_common
     when:
@@ -58,42 +53,60 @@ pipeline:
     when:
       matrix:
         IMAGE: fedora:30
-  install_mageia7:
-    <<: *install_urpmi_common
+  install_fedora30:
+    <<: *install_yum_common
     when:
       matrix:
-        IMAGE: mageia:7
+        IMAGE: fedora:31
+  install_fedora30:
+    <<: *install_yum_common
+    when:
+      matrix:
+        IMAGE: fedora:32
+  install_fedora30:
+    <<: *install_yum_common
+    when:
+      matrix:
+        IMAGE: fedora:33
+  install_fedora30:
+    <<: *install_yum_common
+    when:
+      matrix:
+        IMAGE: fedora:34
+  install_fedora30:
+    <<: *install_yum_common
+    when:
+      matrix:
+        IMAGE: fedora:35
+  install_fedora30:
+    <<: *install_yum_common
+    when:
+      matrix:
+        IMAGE: fedora:36
   install_mageia8:
     <<: *install_urpmi_common
     when:
       matrix:
         IMAGE: mageia:8
-  install_suse_leap15.0:
+  install_suse_tumbleweed:
     <<: *install_zypper_common
     when:
       matrix:
-        IMAGE: opensuse/leap:15.0
-  install_suse_leap15.1:
-    <<: *install_zypper_common
-    when:
-      matrix:
-        IMAGE: opensuse/leap:15.1
-  install_suse_leap42.3:
-    <<: *install_zypper_common
-    when:
-      matrix:
-        IMAGE: opensuse/leap:42.3
+        IMAGE: opensuse/tumbleweed
 
 matrix:
   IMAGE:
-    - metwork/centos6:latest
-    - centos:centos7
+    - rockylinux/rockylinux:8
     - centos:centos8
+    - mageia:8
     - fedora:29
     - fedora:30
-    - opensuse/leap:15.0
-    - opensuse/leap:15.1
-    - opensuse/leap:42.3
-    - mageia:7
+    - fedora:31
+    - fedora:32
+    - fedora:33
+    - fedora:34
+    - fedora:35
+    - fedora:36
+    - opensuse/tumbleweed
 
 branches: [ master, integration, experimental*, ci_*, pci_*, release_* ]
