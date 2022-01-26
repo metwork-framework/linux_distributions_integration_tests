@@ -7,5 +7,6 @@
 - remove mageia 6 and add mageia 8 (#18)
 - remove mageia 6 and add mageia 8 (#19)
 - remove mageia 6 and add mageia 8 (#21)
+- CI under github-actions (#26)
 
 
