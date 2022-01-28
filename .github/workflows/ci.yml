@@ -31,18 +31,17 @@ jobs:
         container:
           - centos:centos8
           - rockylinux:8
-          - fedora:32
-          - fedora:33
-          - fedora:34
-          - debian:stretch
-          - debian:buster
-          - ubuntu:18.04
-          - ubuntu:20.04
-          - ubuntu:20.10
-          - opensuse/leap:15.1
-          - opensuse/leap:15.2
-          - mageia:6
-          - mageia:7
+#          - fedora:32
+#          - fedora:33
+#          - fedora:34
+#          - debian:stretch
+#          - debian:buster
+#          - ubuntu:18.04
+#          - ubuntu:20.04
+#          - ubuntu:20.10
+#          - opensuse/leap:15.1
+#          - opensuse/leap:15.2
+#          - mageia:6
     container:
       image: ${{ matrix.container }}
     steps:
