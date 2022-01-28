@@ -29,24 +29,19 @@ jobs:
     strategy:
       matrix:
         container:
-          - centos:centos8
-          - rockylinux:8
-          - fedora:29
-          - fedora:30
-          - fedora:31
-          - fedora:32
-          - fedora:33
-          - fedora:34
-          - fedora:35
-          - fedora:36
-#          - debian:stretch
-#          - debian:buster
-#          - ubuntu:18.04
-#          - ubuntu:20.04
-#          - ubuntu:20.10
+#          - centos:centos8
+#          - rockylinux:8
+#          - fedora:29
+#          - fedora:30
+#          - fedora:31
+#          - fedora:32
+#          - fedora:33
+#          - fedora:34
+#          - fedora:35
+#          - fedora:36
 #          - opensuse/leap:15.1
 #          - opensuse/leap:15.2
-#          - mageia:6
+          - mageia:8
     container:
       image: ${{ matrix.container }}
     steps:

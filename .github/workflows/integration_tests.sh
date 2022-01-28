@@ -41,9 +41,19 @@ if test "${BACKEND}" = "yum"; then
     echo "gpgcheck=0" >>/etc/yum.repos.d/metwork.repo
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
+    yum -y update
     yum -y install metwork-mfext-full git
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-else
-    echo "Not yet implemented for ${BACKEND}"
 fi
+
+if test "${BACKEND}" = "urpmf"; then
+    urpmi.addmedia metwork ${REPOSITORY}
+    yes |urpmi.update -a
+    yes | urpmi lib64apr1_0 lib64apr-util1_0
+    yes |urpmi git wget procmail
+    yes |urpmi metwork-mfext-full
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+fi
+
