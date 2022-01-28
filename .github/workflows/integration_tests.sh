@@ -1,6 +1,5 @@
 #!/bin/bash
 
-IMAGE=$1
 BASE=$(echo "${IMAGE}" |awk -F ':' '{print $1;}')
 if test "${BASE}" = "debian"; then
     BACKEND="apt-get"
@@ -43,7 +42,7 @@ if test "${BACKEND}" = "yum"; then
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
     yum -y install metwork-mfext-full git
-    git clone -b ${DRONE_BRANCH} https://github.com/metwork-framework/mfext src
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 else
     echo "Not yet implemented for ${BACKEND}"
