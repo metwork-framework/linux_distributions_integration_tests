@@ -2,13 +2,26 @@ name: CI
 
 on:
   push:
-    branches: 
+    branches:
       - master
       - integration
       - experimental*
       - release_*
       - ci*
-      - pci* 
+      - pci*
+    tags:
+      - v*
+  pull_request:
+  repository_dispatch:
+    types:
+      - metwork-trigger*
+
+env:
+    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY"
+    WORKFLOW_SCRIPTS_DIR: .github/workflows
+    DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
+    PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
+    PAYLOAD_OS: ${{ github.event.client_payload.os}}
 
 jobs:
   test:
@@ -38,6 +51,16 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.client_payload.branch || github.ref }}
-     - name: set variables
+      - name: set variables
+        id: SetVariables
         run: |
-          echo "ok"
+          ${WORKFLOW_SCRIPTS_DIR}/set_variables.sh
+      - name: integration_tests
+        if: ${{ steps.SetVariables.outputs.branch != 'null' }}
+        run: |
+          BRANCH=${{ steps.SetVariables.outputs.branch }}
+          TAG=${{ steps.SetVariables.outputs.tag }}
+          REPOSITORY=${{ steps.SetVariables.outputs.repository }}
+          IMAGE=${{ matrix.container }}
+          docker pull ${{ matrix.container }}
+          docker run ${DOCKER_RUN_OPTIONS} -e BRANCH=${BRANCH} -e TAG=${TAG} -e IMAGE=${IMAGE} -e REPOSITORY=${REPOSITORY} --rm ${{ matrix.container }} /bin/bash -c "${DOCKER_WORKFLOW_SCRIPTS_DIR}/integration_tests.sh"
