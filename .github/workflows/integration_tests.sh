@@ -1,5 +1,6 @@
 #!/bin/bash
 
+IMAGE=$1
 BASE=$(echo "${IMAGE}" |awk -F ':' '{print $1;}')
 if test "${BASE}" = "debian"; then
     BACKEND="apt-get"

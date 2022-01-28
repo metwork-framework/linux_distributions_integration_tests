@@ -58,4 +58,4 @@ jobs:
       - name: integration_tests
         if: ${{ steps.SetVariables.outputs.branch != 'null' }}
         run: |
-          ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
+          ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh ${{ matrix.container }}
