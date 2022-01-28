@@ -58,9 +58,4 @@ jobs:
       - name: integration_tests
         if: ${{ steps.SetVariables.outputs.branch != 'null' }}
         run: |
-          BRANCH=${{ steps.SetVariables.outputs.branch }}
-          TAG=${{ steps.SetVariables.outputs.tag }}
-          REPOSITORY=${{ steps.SetVariables.outputs.repository }}
-          IMAGE=${{ matrix.container }}
-          docker pull ${{ matrix.container }}
-          docker run ${DOCKER_RUN_OPTIONS} -e BRANCH=${BRANCH} -e TAG=${TAG} -e IMAGE=${IMAGE} -e REPOSITORY=${REPOSITORY} --rm ${{ matrix.container }} /bin/bash -c "${DOCKER_WORKFLOW_SCRIPTS_DIR}/integration_tests.sh"
+          ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
