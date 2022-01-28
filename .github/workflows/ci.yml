@@ -31,9 +31,14 @@ jobs:
         container:
           - centos:centos8
           - rockylinux:8
-#          - fedora:32
-#          - fedora:33
-#          - fedora:34
+          - fedora:29
+          - fedora:30
+          - fedora:31
+          - fedora:32
+          - fedora:33
+          - fedora:34
+          - fedora:35
+          - fedora:36
 #          - debian:stretch
 #          - debian:buster
 #          - ubuntu:18.04
