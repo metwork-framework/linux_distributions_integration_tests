@@ -59,5 +59,6 @@ jobs:
         run: |
           export REPOSITORY=${{ steps.SetVariables.outputs.repository }}
           export IMAGE=${{ matrix.container }}
-          export BRANCH=${{ steps.SetVariables.outputs.branch }}
+          #export BRANCH=${{ steps.SetVariables.outputs.branch }}
+          export BRANCH=master
           ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
