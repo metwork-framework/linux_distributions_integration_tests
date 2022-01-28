@@ -57,3 +57,9 @@ if test "${BACKEND}" = "urpmf"; then
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
 
+if test "${BACKEND}" = "zypper"; then
+    zypper ar -G ${REPOSITORY}
+    zypper -n install git metwork-mfext-full
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+fi

@@ -41,7 +41,10 @@ jobs:
 #          - fedora:36
 #          - opensuse/leap:15.1
 #          - opensuse/leap:15.2
-          - mageia:8
+          - mageia:7
+#          - mageia:8
+          - opensuse/leap
+          - opensuse/tumbleweed
     container:
       image: ${{ matrix.container }}
     steps:
