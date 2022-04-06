@@ -50,6 +50,10 @@ jobs:
     container:
       image: ${{ matrix.container }}
     steps:
+      - name: install git
+        run: |
+          export IMAGE=${{ matrix.container }}
+          ${WORKFLOW_SCRIPTS_DIR}/install_git.sh
       - name: checkout
         uses: actions/checkout@v2
         with:
