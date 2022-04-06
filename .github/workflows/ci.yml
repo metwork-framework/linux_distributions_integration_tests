@@ -65,6 +65,7 @@ jobs:
       - name: install git mageia
         if: ${{ startsWith(matrix.container, 'mageia:') }}
         run: |
+          yes |urpmi.update -a
           yes |urpmi lib64apr1_0 lib64apr-util1_0 git
       - name: checkout
         uses: actions/checkout@v2
