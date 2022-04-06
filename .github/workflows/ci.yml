@@ -42,11 +42,11 @@ jobs:
           - fedora:35
           - fedora:36
           - fedora:37
-          - opensuse/leap:15.3
-          - opensuse/leap:15.4
+#          - opensuse/leap:15.3
+#          - opensuse/leap:15.4
           - mageia:7
           - mageia:8
-          - mageia:cauldron
+#          - mageia:cauldron
     container:
       image: ${{ matrix.container }}
     steps:
@@ -65,7 +65,6 @@ jobs:
       - name: install git mageia
         if: ${{ startsWith(matrix.container, 'mageia:') }}
         run: |
-          yes |urpmi.update -a
           yes |urpmi lib64apr1_0 lib64apr-util1_0 git
       - name: checkout
         uses: actions/checkout@v2
