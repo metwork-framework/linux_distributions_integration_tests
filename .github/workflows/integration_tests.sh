@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+#set -e
 
 BASE=$(echo "${IMAGE}" |awk -F ':' '{print $1;}')
 if test "${BASE}" = "debian"; then
