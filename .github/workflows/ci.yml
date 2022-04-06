@@ -50,10 +50,22 @@ jobs:
     container:
       image: ${{ matrix.container }}
     steps:
-      - name: install git
+      - name: install git fedora
+        if: ${{ startsWith(matrix.container, 'fedora:') }}
         run: |
-          export IMAGE=${{ matrix.container }}
-          ${WORKFLOW_SCRIPTS_DIR}/install_git.sh
+          yum -y install git
+      - name: install git rocky
+        if: ${{ startsWith(matrix.container, 'rockylinux:') }}
+        run: |
+          yum -y install git
+      - name: install git opensuse
+        if: ${{ startsWith(matrix.container, 'opensuse') }}
+        run: |
+          zypper -n install git
+      - name: install git mageia
+        if: ${{ startsWith(matrix.container, 'mageia:') }}
+        run: |
+          yes |urpmi git
       - name: checkout
         uses: actions/checkout@v2
         with:
