@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 BASE=$(echo "${IMAGE}" |awk -F ':' '{print $1;}')
 if test "${BASE}" = "debian"; then
     BACKEND="apt-get"
@@ -42,7 +44,7 @@ if test "${BACKEND}" = "yum"; then
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
     yum -y update
-    yum -y install metwork-mfext-full git
+    yum -y install metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
@@ -51,7 +53,7 @@ if test "${BACKEND}" = "urpmf"; then
     urpmi.addmedia metwork ${REPOSITORY}
     yes |urpmi.update -a
     yes | urpmi lib64apr1_0 lib64apr-util1_0
-    yes |urpmi git wget procmail
+    yes |urpmi wget procmail
     yes |urpmi metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
@@ -59,7 +61,7 @@ fi
 
 if test "${BACKEND}" = "zypper"; then
     zypper ar -G ${REPOSITORY}
-    zypper -n install git metwork-mfext-full
+    zypper -n install metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
