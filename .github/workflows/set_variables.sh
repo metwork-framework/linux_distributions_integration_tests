@@ -44,5 +44,4 @@ fi
 
 echo "::set-output name=branch::${B}"
 echo "::set-output name=tag::${TAG}"
-#echo "::set-output name=repository::http://metwork-framework.org/pub/metwork/${CI}/rpms/${B}/portable/"
-echo "::set-output name=repository::http://metwork-framework.org/pub/metwork/${CI}/rpms/master/portable/"
+echo "::set-output name=repository::http://metwork-framework.org/pub/metwork/${CI}/rpms/${B}/portable/"

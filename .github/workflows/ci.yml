@@ -9,6 +9,7 @@ on:
       - release_*
       - ci*
       - pci*
+
     tags:
       - v*
   pull_request:
@@ -63,6 +64,6 @@ jobs:
         run: |
           export REPOSITORY=${{ steps.SetVariables.outputs.repository }}
           export IMAGE=${{ matrix.container }}
-          #export BRANCH=${{ steps.SetVariables.outputs.branch }}
-          export BRANCH=master
+          export BRANCH=${{ steps.SetVariables.outputs.branch }}
           ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
+
