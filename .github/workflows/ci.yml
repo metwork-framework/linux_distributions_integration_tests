@@ -34,19 +34,19 @@ jobs:
 #          - centos:latest
           - rockylinux:8
           - fedora:29
-#          - fedora:30
-#          - fedora:31
-#          - fedora:32
-#          - fedora:33
-#          - fedora:34
-#          - fedora:35
-#          - fedora:36
-#          - fedora:37
-#          - opensuse/leap:15.3
-#          - opensuse/leap:15.4
-#          - mageia:7
-#          - mageia:8
-#          - mageia:cauldron
+          - fedora:30
+          - fedora:31
+          - fedora:32
+          - fedora:33
+          - fedora:34
+          - fedora:35
+          - fedora:36
+          - fedora:37
+          - opensuse/leap:15.3
+          - opensuse/leap:15.4
+          - mageia:7
+          - mageia:8
+          - mageia:cauldron
     container:
       image: ${{ matrix.container }}
     steps:
