@@ -23,8 +23,6 @@ else
 fi
 
 if test "${BACKEND}" = "apt-get"; then
-    echo "***** PREPARING *****"
-    echo
     if test "${BASE}" = "ubuntu"; then
         cat /etc/apt/sources.list |grep -v '^#' |sed 's~http[^ ]* ~mirror://mirrors.ubuntu.com/mirrors.txt ~g' >/etc/apt/sources.list2
         mv -f /etc/apt/sources.list2 /etc/apt/sources.list
@@ -32,8 +30,6 @@ if test "${BACKEND}" = "apt-get"; then
     apt-get update
     apt-get -y install apt-file
     apt-file update
-    echo
-    echo
 fi
 
 if test "${BACKEND}" = "yum"; then
@@ -46,6 +42,8 @@ if test "${BACKEND}" = "yum"; then
     yum -y update
     yum -y install metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    #Don t check dependencies for the time being
+    rm -rf src/integration_tests/0095* src/integration_tests/0096*
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
 
@@ -56,6 +54,8 @@ if test "${BACKEND}" = "urpmf"; then
     yes |urpmi wget procmail
     yes |urpmi metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    #Don t check dependencies for the time being
+    rm -rf src/integration_tests/0095* src/integration_tests/0096*
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
 
@@ -63,5 +63,7 @@ if test "${BACKEND}" = "zypper"; then
     zypper ar -G ${REPOSITORY} metwork_${BRANCH}
     zypper -n install metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    #Don t check dependencies for the time being
+    rm -rf src/integration_tests/0095* src/integration_tests/0096*
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
