@@ -18,7 +18,7 @@ on:
 
 env:
 
-    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY"
+#    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY"
     WORKFLOW_SCRIPTS_DIR: .github/workflows
     DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
     PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
@@ -30,8 +30,8 @@ jobs:
     strategy:
       matrix:
         container:
-#          - centos:centos8
-#          - rockylinux:8
+          - centos:centos8
+          - rockylinux:8
 #          - fedora:29
 #          - fedora:30
 #          - fedora:31
@@ -42,10 +42,10 @@ jobs:
 #          - fedora:36
 #          - opensuse/leap:15.1
 #          - opensuse/leap:15.2
-          - mageia:7
+#          - mageia:7
 #          - mageia:8
-          - opensuse/leap
-          - opensuse/tumbleweed
+#          - opensuse/leap
+#          - opensuse/tumbleweed
     container:
       image: ${{ matrix.container }}
     steps:
