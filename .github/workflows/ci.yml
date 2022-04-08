@@ -42,9 +42,9 @@ jobs:
           - fedora:35
           - fedora:36
           - fedora:37
-#          - opensuse/leap:15.3
-#          - opensuse/leap:15.4
-          - mageia:7
+          - opensuse/leap:15.3
+          - opensuse/leap:15.4
+#          - mageia:7
           - mageia:8
 #          - mageia:cauldron
     container:
