@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - integration
+      - experimental*
+      - release_*
+      - ci*
+      - pci*
+
+    tags:
+      - v*
+  pull_request:
+  repository_dispatch:
+    types:
+      - metwork-trigger*
+
+env:
+
+#    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY"
+    WORKFLOW_SCRIPTS_DIR: .github/workflows
+    DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
+    PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
+    PAYLOAD_OS: ${{ github.event.client_payload.os}}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container:
+          - metwork/centos6:latest
+          - centos:centos7
+          - rockylinux:8
+          - fedora:29
+          - fedora:30
+          - fedora:31
+          - fedora:32
+          - fedora:33
+          - fedora:34
+          - fedora:35
+          - fedora:36
+          - fedora:37
+          - opensuse/leap:15.0
+          - opensuse/leap:15.1
+          - opensuse/leap:15.2
+          - opensuse/leap:15.3
+          - opensuse/leap:15.4
+          - opensuse/leap:42.3
+          - mageia:6
+          - mageia:7
+          - mageia:8
+    container:
+      image: ${{ matrix.container }}
+    steps:
+      - name: install git fedora
+        if: ${{ startsWith(matrix.container, 'fedora:') }}
+        run: |
+          yum -y install git
+      - name: install git rocky
+        if: ${{ startsWith(matrix.container, 'rockylinux:') }}
+        run: |
+          yum -y install git
+      - name: install git opensuse
+        if: ${{ startsWith(matrix.container, 'opensuse') }}
+        run: |
+          zypper -n install git
+      - name: install git mageia
+        if: ${{ startsWith(matrix.container, 'mageia:') }}
+        run: |
+          yes |urpmi lib64apr1_0 lib64apr-util1_0 git
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.client_payload.branch || github.ref }}
+      - name: set variables
+        id: SetVariables
+        run: |
+          ${WORKFLOW_SCRIPTS_DIR}/set_variables.sh
+      - name: integration_tests
+        if: ${{ steps.SetVariables.outputs.branch != 'null' }}
+        run: |
+          export REPOSITORY=${{ steps.SetVariables.outputs.repository }}
+          export IMAGE=${{ matrix.container }}
+          export BRANCH=${{ steps.SetVariables.outputs.branch }}
+          ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
+
