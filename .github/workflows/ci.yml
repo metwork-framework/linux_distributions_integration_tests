@@ -31,7 +31,6 @@ jobs:
     strategy:
       matrix:
         container:
-          - metwork/centos6:latest
           - centos:centos7
           - rockylinux:8
           - fedora:29
