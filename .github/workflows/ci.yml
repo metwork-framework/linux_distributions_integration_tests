@@ -59,6 +59,14 @@ jobs:
         if: ${{ startsWith(matrix.container, 'fedora:') }}
         run: |
           yum -y install git
+      - name: install git metwork
+        if: ${{ startsWith(matrix.container, 'metwork/centos6:') }}
+        run: |
+          yum -y install git
+      - name: install git centos
+        if: ${{ startsWith(matrix.container, 'centos:') }}
+        run: |
+          yum -y install git
       - name: install git rocky
         if: ${{ startsWith(matrix.container, 'rockylinux:') }}
         run: |
