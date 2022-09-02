@@ -32,7 +32,8 @@ jobs:
       fail-fast: false
       matrix:
         container:
-          - rockylinux:8
+          - rockylinux:8.5
+          - rockylinux:8.6
           - rockylinux:9
           - fedora:29
           - fedora:30
