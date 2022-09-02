@@ -33,6 +33,7 @@ jobs:
       matrix:
         container:
           - rockylinux:8
+          - rockylinux:9
           - fedora:29
           - fedora:30
           - fedora:31
