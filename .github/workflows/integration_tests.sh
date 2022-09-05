@@ -42,8 +42,6 @@ if test "${BACKEND}" = "yum"; then
     yum -y update
     yum -y install metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
-    #Don t check dependencies for the time being
-    rm -rf src/integration_tests/0095* src/integration_tests/0096*
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
 
@@ -51,11 +49,9 @@ if test "${BACKEND}" = "urpmf"; then
     urpmi.addmedia metwork ${REPOSITORY}
     yes |urpmi.update -a
     yes | urpmi lib64apr1_0 lib64apr-util1_0
-    yes |urpmi wget procmail
-    yes |urpmi metwork-mfext-full
+    yes |urpmi wget procmail tcsh
+    yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
-    #Don t check dependencies for the time being
-    rm -rf src/integration_tests/0095* src/integration_tests/0096*
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
 
@@ -63,7 +59,5 @@ if test "${BACKEND}" = "zypper"; then
     zypper ar -G ${REPOSITORY} metwork_${BRANCH}
     zypper -n install metwork-mfext-full
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
-    #Don t check dependencies for the time being
-    rm -rf src/integration_tests/0095* src/integration_tests/0096*
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
