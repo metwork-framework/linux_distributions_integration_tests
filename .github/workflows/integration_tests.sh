@@ -49,7 +49,7 @@ if test "${BACKEND}" = "urpmf"; then
     urpmi.addmedia metwork ${REPOSITORY}
     yes |urpmi.update -a
     yes | urpmi lib64apr1_0 lib64apr-util1_0
-    yes |urpmi wget procmail
+    yes |urpmi wget procmail tcsh
     yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
