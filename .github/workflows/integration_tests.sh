@@ -40,9 +40,24 @@ if test "${BACKEND}" = "yum"; then
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
     yum -y update
-    yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific
+    yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
+    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
+    cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_scientific
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_scientific src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_mapserver
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_python3_ia
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+
 fi
 
 if test "${BACKEND}" = "urpmf"; then
@@ -50,8 +65,22 @@ if test "${BACKEND}" = "urpmf"; then
     yes |urpmi.update -a
     yes | urpmi lib64apr1_0 lib64apr-util1_0
     yes |urpmi wget procmail tcsh
-    yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific
+    yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
+    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
+    cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_scientific
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_scientific src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_mapserver
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_python3_ia
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
 
