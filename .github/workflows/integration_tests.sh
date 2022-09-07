@@ -39,7 +39,7 @@ if test "${BACKEND}" = "yum"; then
     echo "gpgcheck=0" >>/etc/yum.repos.d/metwork.repo
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
-    yum -y update
+    #yum -y update
     yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
     cd mfext
@@ -62,7 +62,7 @@ fi
 
 if test "${BACKEND}" = "urpmf"; then
     urpmi.addmedia metwork ${REPOSITORY}
-    yes |urpmi.update -a
+    #yes |urpmi.update -a
     yes | urpmi lib64apr1_0 lib64apr-util1_0
     yes |urpmi wget procmail tcsh
     yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
