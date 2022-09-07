@@ -41,6 +41,7 @@ if test "${BACKEND}" = "yum"; then
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
     #yum -y update
     yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
+    yum -y install ncurses-devel
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
