@@ -47,7 +47,7 @@ jobs:
 #          - opensuse/leap:15.3
 #          - opensuse/leap:15.4
 #          - mageia:7
-          - mageia:8
+#          - mageia:8
     container:
       image: ${{ matrix.container }}
     steps:
