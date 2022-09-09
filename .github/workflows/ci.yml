@@ -35,12 +35,11 @@ jobs:
           - rockylinux:8.5
           - rockylinux:8.6
           - rockylinux:9
-#for fedora 29-33, we should embed libopenjp2.so.2.4.0
-#          - fedora:29
-#          - fedora:30
-#          - fedora:31
-#          - fedora:32
-#          - fedora:33
+          - fedora:29
+          - fedora:30
+          - fedora:31
+          - fedora:32
+          - fedora:33
           - fedora:34
           - fedora:35
           - fedora:36
