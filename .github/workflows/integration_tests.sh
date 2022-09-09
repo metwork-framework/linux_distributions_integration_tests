@@ -40,26 +40,20 @@ if test "${BACKEND}" = "yum"; then
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
     #yum -y update
+    yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
-    yum -y install metwork-mfext-full
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
-    yum -y remove metwork-mfext
-    yum -y install metwork-mfext-layer-python3_scientific
     cd ../mfextaddon_scientific
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_scientific src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
-    yum -y remove metwork-mfext-layer_scientific
-    yum -y install metwork-mfext-layer-python3_mapserverapi
     cd ../mfextaddon_mapserver
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
-    yum -y remove metwork-mfext-layer-mapserver
-    yum -y install metwork-mfext-layer-python3_ia
     cd ../mfextaddon_python3_ia
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
