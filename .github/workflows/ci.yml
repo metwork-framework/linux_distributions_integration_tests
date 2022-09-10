@@ -64,6 +64,14 @@ jobs:
         if: ${{ startsWith(matrix.container, 'rockylinux:') }}
         run: |
           yum -y install git
+      - name: install git alma
+        if: ${{ startsWith(matrix.container, 'almalinux:') }}
+        run: |
+          yum -y install git
+      - name: install git centos-stream
+        if: ${{ startsWith(matrix.container, 'dokken/centos-stream') }}
+        run: |
+          yum -y install git
       - name: install git opensuse
         if: ${{ startsWith(matrix.container, 'opensuse') }}
         run: |
