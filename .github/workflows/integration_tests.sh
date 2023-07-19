@@ -45,7 +45,6 @@ if test "${BACKEND}" = "yum"; then
     echo "gpgcheck=0" >>/etc/yum.repos.d/metwork.repo
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
-    #yum -y update
     yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
     yum -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
@@ -56,6 +55,7 @@ if test "${BACKEND}" = "yum"; then
     cd -
     cd ../mfextaddon_scientific
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_scientific src
+    export SPATIALINDEX_C_LIBRARY=/opt/metwork-mfext/opt/scientific/lib
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_mapserver
@@ -68,7 +68,7 @@ if test "${BACKEND}" = "yum"; then
     cd -
     cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
-    cd src/integration_tests && /opt/metwork-mfext-bin/mfext_wrapper ./run_integration_tests.sh
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfdata
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfdata src
