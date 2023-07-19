@@ -65,19 +65,24 @@ if test "${BACKEND}" = "yum"; then
     cd ../mfextaddon_python3_ia
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfserv
+    cd -
+    cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
     cd src/integration_tests && /opt/metwork-bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfdata
+    cd -
+    cd ../mfdata
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfdata src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfbase
+    cd -
+    cd ../mfbase
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfbase src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfadmin
+    cd -
+    cd ../mfadmin
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfadmin src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfsysmon
+    cd -
+    cd ../mfsysmon
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfsysmon src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 
@@ -107,19 +112,24 @@ if test "${BACKEND}" = "urpmf"; then
     cd ../mfextaddon_python3_ia
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfserv
+    cd -
+    cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfdata
+    cd -
+    cd ../mfdata
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfdata src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfbase
+    cd -
+    cd ../mfbase
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfbase src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfadmin
+    cd -
+    cd ../mfadmin
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfadmin src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd mfsysmon
+    cd -
+    cd ../mfsysmon
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfsysmon src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
 fi
