@@ -194,6 +194,8 @@ if test "${BACKEND}" = "urpmf"; then
     cd -
     su --command="mfsysmon.stop" - mfsysmon
 
+fi
+
 
 if test "${BACKEND}" = "zypper"; then
     zypper ar -G ${REPOSITORY} metwork_${BRANCH}
