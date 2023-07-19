@@ -68,7 +68,7 @@ if test "${BACKEND}" = "yum"; then
     cd -
     cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
-    cd src/integration_tests && /opt/metwork-bin/mfext_wrapper ./run_integration_tests.sh
+    cd src/integration_tests && /opt/metwork-mfext-bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfdata
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfdata src
