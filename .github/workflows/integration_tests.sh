@@ -71,7 +71,7 @@ if test "${BACKEND}" = "yum"; then
     su --command="mfserv.init" - mfserv
     su --command="mfserv.start" - mfserv
     su --command="mfserv.status" - mfserv
-    if test -d "src/integration_tests"; then chown -R mfserv integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfserv; cd ..; fi
+    if test -d "src/integration_tests"; then chown -R mfserv src/integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfserv; cd ..; fi
     su --command="mfserv.stop" - mfserv
     cd -
     cd ../mfdata
@@ -79,7 +79,7 @@ if test "${BACKEND}" = "yum"; then
     su --command="mfdata.init" - mfdata
     su --command="mfdata.start" - mfdata
     su --command="mfdata.status" - mfdata
-    if test -d "src/integration_tests"; then chown -R mfdata integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfdata; cd ..; fi
+    if test -d "src/integration_tests"; then chown -R mfdata src/integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfdata; cd ..; fi
     su --command="mfdata.stop" - mfdata
     cd -
     cd ../mfbase
@@ -87,7 +87,7 @@ if test "${BACKEND}" = "yum"; then
     su --command="mfbase.init" - mfbase
     su --command="mfbase.start" - mfbase
     su --command="mfbase.status" - mfbase
-    if test -d "src/integration_tests"; then chown -R mfbase integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfbase; cd ..; fi
+    if test -d "src/integration_tests"; then chown -R mfbase src/integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfbase; cd ..; fi
     su --command="mfbase.stop" - mfbase
     cd -
     cd ../mfadmin
@@ -95,7 +95,7 @@ if test "${BACKEND}" = "yum"; then
     su --command="mfadmin.init" - mfadmin
     su --command="mfadmin.start" - mfadmin
     su --command="mfadmin.status" - mfadmin
-    if test -d "src/integration_tests"; then chown -R mfadmin integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfadmin; cd ..; fi
+    if test -d "src/integration_tests"; then chown -R mfadmin src/integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfadmin; cd ..; fi
     su --command="mfadmin.stop" - mfadmin
     cd -
     cd ../mfsysmon
@@ -103,7 +103,7 @@ if test "${BACKEND}" = "yum"; then
     su --command="mfsysmon.init" - mfsysmon
     su --command="mfsysmon.start" - mfsysmon
     su --command="mfsysmon.status" - mfsysmon
-    if test -d "src/integration_tests"; then chown -R mfsysmon integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfsysmon; cd ..; fi
+    if test -d "src/integration_tests"; then chown -R mfsysmon src/integration_tests; cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfsysmon; cd ..; fi
     su --command="mfsysmon.stop" - mfsysmon
 
 fi
