@@ -32,20 +32,34 @@ jobs:
       fail-fast: false
       matrix:
         container:
+          - rockylinux:8.5
+          - rockylinux:8.6
+          - rockylinux:8.7
+          - rockylinux:8.8
           - rockylinux:8
+          - rockylinux:9.0
+          - rockylinux:9.1
+          - rockylinux:9.2
+          - rockylinux:9
+          - almalinux:8
+          - almalinux:9
           - fedora:29
-          - fedora:30
-          - fedora:31
-          - fedora:32
-          - fedora:33
-          - fedora:34
-          - fedora:35
-          - fedora:36
-          - fedora:37
+#         - fedora:30
+#         - fedora:31
+#         - fedora:32
+#         - fedora:33
+#         - fedora:34
+#         - fedora:35
+#         - fedora:36
+#         - fedora:37
+          - fedora:38
+          - fedora:39
+          - dokken/centos-stream-8:latest
+          - dokken/centos-stream-9:latest
 #          - opensuse/leap:15.3
 #          - opensuse/leap:15.4
 #          - mageia:7
-          - mageia:8
+#          - mageia:8
     container:
       image: ${{ matrix.container }}
     steps:
@@ -57,6 +71,14 @@ jobs:
         if: ${{ startsWith(matrix.container, 'rockylinux:') }}
         run: |
           yum -y install git
+      - name: install git alma
+        if: ${{ startsWith(matrix.container, 'almalinux:') }}
+        run: |
+          yum -y install git
+      - name: install git centos-stream
+        if: ${{ startsWith(matrix.container, 'dokken/centos-stream') }}
+        run: |
+          yum -y install git
       - name: install git opensuse
         if: ${{ startsWith(matrix.container, 'opensuse') }}
         run: |
@@ -66,7 +88,7 @@ jobs:
         run: |
           yes |urpmi lib64apr1_0 lib64apr-util1_0 git
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           ref: ${{ github.event.client_payload.branch || github.ref }}
