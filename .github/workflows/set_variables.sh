@@ -42,6 +42,6 @@ else
   CI=releases
 fi
 
-echo "::set-output name=branch::${B}"
-echo "::set-output name=tag::${TAG}"
-echo "::set-output name=repository::http://metwork-framework.org/pub/metwork/${CI}/rpms/${B}/portable/"
+echo "branch=${B}" >> ${GITHUB_OUTPUT}
+echo "tag=${TAG}" >> ${GITHUB_OUTPUT}
+echo "repository=http://metwork-framework.org/pub/metwork/${CI}/rpms/${B}/portable/" >> ${GITHUB_OUTPUT}
