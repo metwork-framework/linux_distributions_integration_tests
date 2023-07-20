@@ -34,19 +34,26 @@ jobs:
         container:
           - rockylinux:8.5
           - rockylinux:8.6
+          - rockylinux:8.7
+          - rockylinux:8.8
+          - rockylinux:8
+          - rockylinux:9.0
+          - rockylinux:9.1
+          - rockylinux:9.2
           - rockylinux:9
-          - almalinux:8.5
-          - almalinux:8.6
+          - almalinux:8
           - almalinux:9
           - fedora:29
-          - fedora:30
-          - fedora:31
-          - fedora:32
-          - fedora:33
-          - fedora:34
-          - fedora:35
-          - fedora:36
-          - fedora:37
+#         - fedora:30
+#         - fedora:31
+#         - fedora:32
+#         - fedora:33
+#         - fedora:34
+#         - fedora:35
+#         - fedora:36
+#         - fedora:37
+          - fedora:38
+          - fedora:39
           - dokken/centos-stream-8:latest
           - dokken/centos-stream-9:latest
 #          - opensuse/leap:15.3
