@@ -45,17 +45,18 @@ if test "${BACKEND}" = "yum"; then
     echo "gpgcheck=0" >>/etc/yum.repos.d/metwork.repo
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
-    #yum -y update
     yum -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
     yum -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
     mkdir mfserv mfdata mfbase mfadmin mfsysmon
+    yum -y install make cronie diffutils acl
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_scientific
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_scientific src
+    export SPATIALINDEX_C_LIBRARY=/opt/metwork-mfext/opt/scientific/lib
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_mapserver
@@ -68,23 +69,53 @@ if test "${BACKEND}" = "yum"; then
     cd -
     cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
-    cd src/integration_tests && /opt/metwork-mfext-bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfserv.init" - mfserv
+    su --command="mfserv.start" - mfserv
+    su --command="mfserv.status" - mfserv
+    chown -R mfserv src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfserv
     cd -
+    su --command="mfserv.stop" - mfserv
     cd ../mfdata
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfdata src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfdata.init" - mfdata
+    su --command="mfdata.start" - mfdata
+    su --command="mfdata.status" - mfdata
+    chown -R mfdata src/integration_tests
+    cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfdata
     cd -
+    su --command="mfdata.stop" - mfdata
     cd ../mfbase
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfbase src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfbase.init" - mfbase
+    su --command="mfbase.start" - mfbase
+    su --command="mfbase.status" - mfbase
+    chown -R mfbase src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfbase
     cd -
+    su --command="mfbase.stop" - mfbase
     cd ../mfadmin
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfadmin src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfadmin.init" - mfadmin
+    su --command="mfadmin.start" - mfadmin
+    su --command="mfadmin.status" - mfadmin
+    chown -R mfadmin src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfadmin
     cd -
+    su --command="mfadmin.stop" - mfadmin
     cd ../mfsysmon
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfsysmon src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfsysmon.init" - mfsysmon
+    su --command="mfsysmon.start" - mfsysmon
+    su --command="mfsysmon.status" - mfsysmon
+    chown -R mfsysmon src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfsysmon
+    cd -
+    su --command="mfsysmon.stop" - mfsysmon
 
 fi
 
@@ -115,24 +146,56 @@ if test "${BACKEND}" = "urpmf"; then
     cd -
     cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfserv.init" - mfserv
+    su --command="mfserv.start" - mfserv
+    su --command="mfserv.status" - mfserv
+    chown -R mfserv src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfserv
     cd -
+    su --command="mfserv.stop" - mfserv
     cd ../mfdata
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfdata src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfdata.init" - mfdata
+    su --command="mfdata.start" - mfdata
+    su --command="mfdata.status" - mfdata
+    chown -R mfdata src/integration_tests
+    cd src/integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfdata
     cd -
+    su --command="mfdata.stop" - mfdata
     cd ../mfbase
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfbase src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfbase.init" - mfbase
+    su --command="mfbase.start" - mfbase
+    su --command="mfbase.status" - mfbase
+    chown -R mfbase src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfbase
     cd -
+    su --command="mfbase.stop" - mfbase
     cd ../mfadmin
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfadmin src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfadmin.init" - mfadmin
+    su --command="mfadmin.start" - mfadmin
+    su --command="mfadmin.status" - mfadmin
+    chown -R mfadmin src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfadmin
     cd -
+    su --command="mfadmin.stop" - mfadmin
     cd ../mfsysmon
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfsysmon src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    su --command="mfsysmon.init" - mfsysmon
+    su --command="mfsysmon.start" - mfsysmon
+    su --command="mfsysmon.status" - mfsysmon
+    chown -R mfsysmon src/integration_tests
+    cd src/integration_tests
+    su --command="cd `pwd`; ./run_integration_tests.sh" - mfsysmon
+    cd -
+    su --command="mfsysmon.stop" - mfsysmon
+
 fi
+
 
 if test "${BACKEND}" = "zypper"; then
     zypper ar -G ${REPOSITORY} metwork_${BRANCH}

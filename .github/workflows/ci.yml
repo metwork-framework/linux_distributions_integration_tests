@@ -44,14 +44,14 @@ jobs:
           - almalinux:8
           - almalinux:9
           - fedora:29
-          - fedora:30
-          - fedora:31
-          - fedora:32
-          - fedora:33
-          - fedora:34
-          - fedora:35
-          - fedora:36
-          - fedora:37
+#         - fedora:30
+#         - fedora:31
+#         - fedora:32
+#         - fedora:33
+#         - fedora:34
+#         - fedora:35
+#         - fedora:36
+#         - fedora:37
           - fedora:38
           - fedora:39
           - dokken/centos-stream-8:latest
