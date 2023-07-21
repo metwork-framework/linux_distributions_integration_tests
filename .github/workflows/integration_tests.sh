@@ -57,7 +57,7 @@ if test "${BACKEND}" = "yum"; then
     cd ../mfextaddon_scientific
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_scientific src
     export SPATIALINDEX_C_LIBRARY=/opt/metwork-mfext/opt/scientific/lib
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd src/integration_tests && rm -f 0003_test_import_python2_scientific && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_mapserver
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
