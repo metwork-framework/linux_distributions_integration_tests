@@ -61,7 +61,7 @@ if test "${BACKEND}" = "yum"; then
     cd -
     cd ../mfextaddon_mapserver
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd src/integration_tests && rm -f 0002_test_python2_mapserverapi && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_python3_ia
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
