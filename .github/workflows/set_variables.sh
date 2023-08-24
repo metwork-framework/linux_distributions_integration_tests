@@ -9,6 +9,8 @@ TAG=
 case "${GITHUB_EVENT_NAME}" in
     repository_dispatch)
         B=${PAYLOAD_BRANCH};;
+    workflow_dispatch)
+	B=$(WORKFLOW_BRANCH);;
     pull_request)
         case "${GITHUB_BASE_REF}" in
             master | integration | experimental* | release_* | ci* | pci*)
