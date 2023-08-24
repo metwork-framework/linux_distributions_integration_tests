@@ -32,7 +32,6 @@ case "${GITHUB_EVENT_NAME}" in
         esac;;
 esac
 
-echo "B" "${B}"
 if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch" ] && [ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]; then
     case "${GITHUB_REF}" in
         refs/tags/v*)
