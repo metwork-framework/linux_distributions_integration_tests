@@ -4,8 +4,11 @@
 set -x
 
 TAG=
-
+B=null
     
+echo "GITHUB_EVENT_NAME" "${GITHUB_EVENT_NAME}"
+echo "WORKFLOW_BRANCH" "${WORKFLOW_BRANCH}"
+
 case "${GITHUB_EVENT_NAME}" in
     repository_dispatch)
         B=${PAYLOAD_BRANCH};;
@@ -28,10 +31,9 @@ case "${GITHUB_EVENT_NAME}" in
                 B=null;
         esac;;
 esac
-if [ -z ${B} ]; then
-  B=null
-fi
-if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch" ]; then
+
+echo "B" "${B}"
+if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch" ] && [ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]; then
     case "${GITHUB_REF}" in
         refs/tags/v*)
             TAG=${GITHUB_REF#refs/tags/};;
