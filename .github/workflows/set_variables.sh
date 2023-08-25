@@ -13,7 +13,7 @@ case "${GITHUB_EVENT_NAME}" in
     repository_dispatch)
         B=${PAYLOAD_BRANCH};;
     workflow_dispatch)
-        B=$(WORKFLOW_BRANCH);;
+        B=${WORKFLOW_BRANCH};;
     pull_request)
         case "${GITHUB_BASE_REF}" in
             master | integration | experimental* | release_* | ci* | pci*)
@@ -32,7 +32,6 @@ case "${GITHUB_EVENT_NAME}" in
         esac;;
 esac
 
-echo "B" "${B}"
 if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch" ] && [ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]; then
     case "${GITHUB_REF}" in
         refs/tags/v*)
