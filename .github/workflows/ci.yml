@@ -14,6 +14,11 @@ on:
       - v*
   pull_request:
   workflow_dispatch:
+    inputs:
+      workflow_branch:
+        description: branch to use
+        required: true
+        type: string
   repository_dispatch:
     types:
       - metwork-trigger*
@@ -23,8 +28,9 @@ env:
 #    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY"
     WORKFLOW_SCRIPTS_DIR: .github/workflows
     DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
-    PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
-    PAYLOAD_OS: ${{ github.event.client_payload.os}}
+    PAYLOAD_BRANCH: ${{ github.event.client_payload.branch }}
+    PAYLOAD_OS: ${{ github.event.client_payload.os }}
+    WORKFLOW_BRANCH: ${{ github.event.inputs.workflow_branch }}
 
 jobs:
   test:
@@ -45,14 +51,14 @@ jobs:
           - almalinux:8
           - almalinux:9
           - fedora:29
-#         - fedora:30
-#         - fedora:31
-#         - fedora:32
-#         - fedora:33
-#         - fedora:34
-#         - fedora:35
-#         - fedora:36
-#         - fedora:37
+          - fedora:30
+          - fedora:31
+          - fedora:32
+          - fedora:33
+          - fedora:34
+          - fedora:35
+          - fedora:36
+          - fedora:37
           - fedora:38
           - fedora:39
           - dokken/centos-stream-8:latest
@@ -92,7 +98,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: ${{ github.event.client_payload.branch || github.ref }}
+          ref: ${{ github.event.client_payload.branch || github.event.inputs.workflow_branch || github.ref }}
       - name: set variables
         id: SetVariables
         run: |
