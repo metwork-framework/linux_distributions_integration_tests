@@ -109,5 +109,6 @@ jobs:
           export REPOSITORY=${{ steps.SetVariables.outputs.repository }}
           export IMAGE=${{ matrix.container }}
           export BRANCH=${{ steps.SetVariables.outputs.branch }}
+          export SECRET=${{ secrets.METWORK_ACCESS_TOKEN }}
           ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
 

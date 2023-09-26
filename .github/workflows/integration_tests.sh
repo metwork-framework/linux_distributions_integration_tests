@@ -55,7 +55,7 @@ if test "${BACKEND}" = "yum"; then
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_radartools
-    git clone -b ${BRANCH} https://metworkbot:${{ secrets.METWORK_ACCESS_TOKEN }}@github.com/metwork-framework/mfextaddon_radartools src
+    git clone -b ${BRANCH} https://metworkbot:${SECRET}@github.com/metwork-framework/mfextaddon_radartools src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_scientific
