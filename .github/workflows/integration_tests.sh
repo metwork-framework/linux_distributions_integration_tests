@@ -63,14 +63,14 @@ if test "${BACKEND}" = "yum"; then
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
-    #cd ../mfextaddon_python3_ia
-    #git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
-    #cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    #cd -
-    cd ../mfextaddon_radartools
-    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_radartools src
+    cd ../mfextaddon_python3_ia
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
+    #cd ../mfextaddon_radartools
+    #git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_radartools src
+    #cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    #cd -
     cd ../mfserv
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfserv src
     su --command="mfserv.init" - mfserv
