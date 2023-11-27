@@ -61,6 +61,7 @@ jobs:
           - fedora:37
           - fedora:38
           - fedora:39
+          - fedora:40
           - dokken/centos-stream-8:latest
           - dokken/centos-stream-9:latest
 #          - opensuse/leap:15.3
