@@ -4,6 +4,6 @@
 
 ### New Features
 
-- add check on addon radartools (#78)
+- add fedora:40 check (#83)
 
 
