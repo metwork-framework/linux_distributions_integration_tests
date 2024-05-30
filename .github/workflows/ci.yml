@@ -64,15 +64,10 @@ jobs:
           - fedora:37
           - fedora:38
           - fedora:39
-<<<<<<< HEAD
-          - dokken/centos-stream-8:latest
-          - dokken/centos-stream-9:latest
-=======
           - fedora:40
           - fedora:41
 #          - dokken/centos-stream-8:latest
 #          - dokken/centos-stream-9:latest
->>>>>>> 98302fa (feat: add rockylinux 9.4 and fedora 41 (#88))
 #          - opensuse/leap:15.3
 #          - opensuse/leap:15.4
 #          - mageia:7
