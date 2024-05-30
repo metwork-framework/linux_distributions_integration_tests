@@ -49,9 +49,10 @@ jobs:
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
+          - rockylinux:9.4
           - rockylinux:9
-          - almalinux:8
-          - almalinux:9
+#          - almalinux:8
+#          - almalinux:9
           - fedora:29
           - fedora:30
           - fedora:31
@@ -64,8 +65,9 @@ jobs:
           - fedora:38
           - fedora:39
           - fedora:40
-          - dokken/centos-stream-8:latest
-          - dokken/centos-stream-9:latest
+          - fedora:41
+#          - dokken/centos-stream-8:latest
+#          - dokken/centos-stream-9:latest
 #          - opensuse/leap:15.3
 #          - opensuse/leap:15.4
 #          - mageia:7
