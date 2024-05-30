@@ -49,7 +49,8 @@ jobs:
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
-          - rockylinux:9.4
+#          - rockylinux:9.4
+          - rockylinux/rockylinux:9.4
           - rockylinux:9
 #          - almalinux:8
 #          - almalinux:9
