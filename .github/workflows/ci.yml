@@ -49,9 +49,11 @@ jobs:
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
+#          - rockylinux:9.4
+          - rockylinux/rockylinux:9.4
           - rockylinux:9
-          - almalinux:8
-          - almalinux:9
+#          - almalinux:8
+#          - almalinux:9
           - fedora:29
           - fedora:30
           - fedora:31
@@ -63,8 +65,10 @@ jobs:
           - fedora:37
           - fedora:38
           - fedora:39
-          - dokken/centos-stream-8:latest
-          - dokken/centos-stream-9:latest
+          - fedora:40
+          - fedora:41
+#          - dokken/centos-stream-8:latest
+#          - dokken/centos-stream-9:latest
 #          - opensuse/leap:15.3
 #          - opensuse/leap:15.4
 #          - mageia:7
@@ -97,7 +101,7 @@ jobs:
         run: |
           yes |urpmi lib64apr1_0 lib64apr-util1_0 git
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.client_payload.branch || github.event.inputs.workflow_branch || github.ref }}
