@@ -83,7 +83,7 @@ jobs:
       - name: install git rocky
         if: ${{ startsWith(matrix.container, 'rockylinux') }}
         run: |
-          yum -y install git
+          dnf -y install git
       - name: install git alma
         if: ${{ startsWith(matrix.container, 'almalinux:') }}
         run: |
