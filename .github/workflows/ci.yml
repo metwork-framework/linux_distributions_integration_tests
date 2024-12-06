@@ -44,14 +44,13 @@ jobs:
           - rockylinux:8.7
           - rockylinux:8.8
           - rockylinux:8.9
-#          - rockylinux:8.10
           - rockylinux/rockylinux:8.10
           - rockylinux:9.0
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
-#          - rockylinux:9.4
           - rockylinux/rockylinux:9.4
+          - rockylinux/rockylinux:9.5
           - fedora:34
           - fedora:35
           - fedora:36
