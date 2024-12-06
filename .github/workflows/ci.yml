@@ -44,21 +44,13 @@ jobs:
           - rockylinux:8.7
           - rockylinux:8.8
           - rockylinux:8.9
-          - rockylinux:8
+          - rockylinux/rockylinux:8.10
           - rockylinux:9.0
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
-#          - rockylinux:9.4
           - rockylinux/rockylinux:9.4
-          - rockylinux:9
-#          - almalinux:8
-#          - almalinux:9
-          - fedora:29
-          - fedora:30
-          - fedora:31
-          - fedora:32
-          - fedora:33
+          - rockylinux/rockylinux:9.5
           - fedora:34
           - fedora:35
           - fedora:36
@@ -67,12 +59,7 @@ jobs:
           - fedora:39
           - fedora:40
           - fedora:41
-#          - dokken/centos-stream-8:latest
-#          - dokken/centos-stream-9:latest
-#          - opensuse/leap:15.3
-#          - opensuse/leap:15.4
-#          - mageia:7
-#          - mageia:8
+          - fedora:42
     container:
       image: ${{ matrix.container }}
     steps:
