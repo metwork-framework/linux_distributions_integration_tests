@@ -44,13 +44,17 @@ jobs:
           - rockylinux:8.7
           - rockylinux:8.8
           - rockylinux:8.9
+<<<<<<< HEAD
           - rockylinux:8
+=======
+          - rockylinux/rockylinux:8.10
+>>>>>>> 8470841 (feat: add tests on fedora:42 and rockylinux/rockylinux:9.5 (#102))
           - rockylinux:9.0
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
-#          - rockylinux:9.4
           - rockylinux/rockylinux:9.4
+<<<<<<< HEAD
           - rockylinux:9
 #          - almalinux:8
 #          - almalinux:9
@@ -59,6 +63,9 @@ jobs:
           - fedora:31
           - fedora:32
           - fedora:33
+=======
+          - rockylinux/rockylinux:9.5
+>>>>>>> 8470841 (feat: add tests on fedora:42 and rockylinux/rockylinux:9.5 (#102))
           - fedora:34
           - fedora:35
           - fedora:36
