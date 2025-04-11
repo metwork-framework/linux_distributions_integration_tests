@@ -49,7 +49,7 @@ if test "${BACKEND}" = "yum"; then
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia mfextaddon_radartools
     yum -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
     mkdir mfserv mfdata mfbase mfadmin mfsysmon
-    yum -y install make cronie diffutils acl
+    yum -y install make cronie diffutils acl gawk
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
