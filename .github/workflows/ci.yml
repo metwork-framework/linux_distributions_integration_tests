@@ -67,7 +67,7 @@ jobs:
       - name: install git fedora
         if: ${{ startsWith(matrix.container, 'fedora:') }}
         run: |
-          yum -y install git
+          yum -y install git gawk
       - name: install git rocky
         if: ${{ startsWith(matrix.container, 'rockylinux:') }}
         run: |

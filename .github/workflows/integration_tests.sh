@@ -51,7 +51,7 @@ if test "${BACKEND}" = "dnf"; then
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia mfextaddon_radartools
     dnf -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
     mkdir mfserv mfdata mfbase mfadmin mfsysmon
-    yum -y install make cronie diffutils acl gawk
+    yum -y install make cronie diffutils acl
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
