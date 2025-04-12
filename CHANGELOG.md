@@ -10,5 +10,6 @@
 - add rockylinux/rockylinux:8.10 and fedora:42 (#99)
 - add tests on fedora:42 and rockylinux/rockylinux:9.5 (#102)
 - add test on fedora:43 (#105)
+- add gawk (not present by default on fedora >= 42) (#106)
 
 
