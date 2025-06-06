@@ -49,11 +49,10 @@ jobs:
           - rockylinux:9.1
           - rockylinux:9.2
           - rockylinux:9.3
-#          - rockylinux:9.4
           - rockylinux/rockylinux:9.4
+          - rockylinux/rockylinux:9.5
+          - rockylinux/rockylinux:9.6
           - rockylinux:9
-#          - almalinux:8
-#          - almalinux:9
           - fedora:29
           - fedora:30
           - fedora:31
@@ -67,19 +66,14 @@ jobs:
           - fedora:39
           - fedora:40
           - fedora:41
-#          - dokken/centos-stream-8:latest
-#          - dokken/centos-stream-9:latest
-#          - opensuse/leap:15.3
-#          - opensuse/leap:15.4
-#          - mageia:7
-#          - mageia:8
+          - fedora:42
     container:
       image: ${{ matrix.container }}
     steps:
       - name: install git fedora
         if: ${{ startsWith(matrix.container, 'fedora:') }}
         run: |
-          yum -y install git
+          yum -y install git gawk
       - name: install git rocky
         if: ${{ startsWith(matrix.container, 'rockylinux') }}
         run: |
