@@ -72,7 +72,7 @@ jobs:
       - name: install git rocky
         if: ${{ startsWith(matrix.container, 'rockylinux:') }}
         run: |
-          yum -y install git
+          yum -y install git epel-release
       - name: install git alma
         if: ${{ startsWith(matrix.container, 'almalinux:') }}
         run: |
