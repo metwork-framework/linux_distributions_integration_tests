@@ -47,7 +47,6 @@ if test "${BACKEND}" = "dnf"; then
     echo "gpgcheck=0" >>/etc/yum.repos.d/metwork.repo
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
-    dnf -y install epel-release
     dnf -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_extratools metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia metwork-mfext-layer-python3_radartools
     mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia mfextaddon_radartools
     dnf -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
