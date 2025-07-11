@@ -8,19 +8,19 @@ if test "${BASE}" = "debian"; then
 elif test "${BASE}" = "ubuntu"; then
     BACKEND="apt-get"
 elif test "${BASE}" = "fedora"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "centos"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "rockylinux"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "rockylinux/rockylinux"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "almalinux"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "dokken/centos-stream-8"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "dokken/centos-stream-9"; then
-    BACKEND="yum"
+    BACKEND="dnf"
 elif test "${BASE}" = "opensuse/leap"; then
     BACKEND="zypper"
 elif test "${BASE}" = "mageia"; then
@@ -40,20 +40,27 @@ if test "${BACKEND}" = "apt-get"; then
     apt-file update
 fi
 
-if test "${BACKEND}" = "yum"; then
+if test "${BACKEND}" = "dnf"; then
     echo "[metwork]" >/etc/yum.repos.d/metwork.repo
     echo "name=metwork" >>/etc/yum.repos.d/metwork.repo
     echo "baseurl=${REPOSITORY}/" >>/etc/yum.repos.d/metwork.repo
     echo "gpgcheck=0" >>/etc/yum.repos.d/metwork.repo
     echo "enabled=1" >>/etc/yum.repos.d/metwork.repo
     echo "metadata_expire=0" >>/etc/yum.repos.d/metwork.repo
-    dnf -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
-    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
+    if test "${BASE}" = "rockylinux/rockylinux"; then
+        dnf -y install epel-release
+    fi
+    dnf -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia metwork-mfext-layer-python3_radartools
+    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia mfextaddon_radartools
     dnf -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
     mkdir mfserv mfdata mfbase mfadmin mfsysmon
-    dnf -y install make cronie diffutils acl git
+    dnf -y install make cronie diffutils acl
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_radartools
+    git clone -b ${BRANCH} https://metworkbot:${SECRET}@github.com/metwork-framework/mfextaddon_radartools src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfextaddon_scientific
@@ -126,9 +133,9 @@ if test "${BACKEND}" = "urpmf"; then
     #yes |urpmi.update -a
     yes | urpmi lib64apr1_0 lib64apr-util1_0
     yes |urpmi wget procmail tcsh
-    yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia
+    yes |urpmi metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia metwork-mfext-layer-python3_radartools
     yes |urpmi mfserv mfdata mfbase mfadmin mfsysmon
-    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia
+    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia mfextaddon_radartools
     mkdir mfserv mfdata mfbase mfadmin mfsysmon
     cd mfext
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfext src
@@ -144,6 +151,10 @@ if test "${BACKEND}" = "urpmf"; then
     cd -
     cd ../mfextaddon_python3_ia
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
+    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
+    cd -
+    cd ../mfextaddon_radartools
+    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_radartools src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfserv
