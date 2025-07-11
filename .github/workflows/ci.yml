@@ -52,6 +52,7 @@ jobs:
           - rockylinux/rockylinux:9.4
           - rockylinux/rockylinux:9.5
           - rockylinux/rockylinux:9.6
+          - rockylinux/rockylinux:10.0
           - fedora:34
           - fedora:35
           - fedora:36
@@ -61,6 +62,7 @@ jobs:
           - fedora:40
           - fedora:41
           - fedora:42
+          - fedora:43
     container:
       image: ${{ matrix.container }}
     steps:
@@ -103,5 +105,6 @@ jobs:
           export REPOSITORY=${{ steps.SetVariables.outputs.repository }}
           export IMAGE=${{ matrix.container }}
           export BRANCH=${{ steps.SetVariables.outputs.branch }}
+          export SECRET=${{ secrets.METWORK_ACCESS_TOKEN }}
           ${WORKFLOW_SCRIPTS_DIR}/integration_tests.sh
 
