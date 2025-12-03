@@ -66,6 +66,9 @@ jobs:
     container:
       image: ${{ matrix.container }}
     steps:
+      - name: install sudo
+        run: |
+          yum -y install sudo
       - name: Aggressive cleanup
         #from https://dev.to/mathio/squeezing-disk-space-from-github-actions-runners-an-engineers-guide-3pjg
         run: |
