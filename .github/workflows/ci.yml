@@ -74,6 +74,8 @@ jobs:
         run: |
           echo "available disk before"
           df -h
+          du -sh /*
+          du -sh /__t/*
           # Remove Java (JDKs)
           sudo rm -rf /usr/lib/jvm
           # Remove .NET SDKs
