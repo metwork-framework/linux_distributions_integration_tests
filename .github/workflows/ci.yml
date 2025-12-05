@@ -76,37 +76,29 @@ jobs:
           df -h
           # Remove Java (JDKs)
           cd /
-          sudo find . -name jvm -print
+          sudo locate jvm
           sudo rm -rf /usr/lib/jvm
           # Remove .NET SDKs
-          sudo find . -name dotnet -print
+          sudo locate dotnet
           sudo rm -rf /usr/share/dotnet
           # Remove Swift toolchain
-          sudo find . -name swift -print
+          sudo locate swift
           sudo rm -rf /usr/share/swift
           # Remove Haskell (GHC)
-          sudo find . -name .ghcup -print
           sudo rm -rf /usr/local/.ghcup
           # Remove Julia
-          sudo find . -name "julia*" -print
           sudo rm -rf /usr/local/julia*
           # Remove Android SDKs
-          sudo find . -name android -print
           sudo rm -rf /usr/local/lib/android
           # Remove Chromium (optional if not using for browser tests)
-          sudo find . -name chromium -print
           sudo rm -rf /usr/local/share/chromium
           # Remove Microsoft/Edge and Google Chrome builds
-          sudo find . -name google -print
           sudo rm -rf /opt/microsoft /opt/google
           # Remove Azure CLI
-          sudo find . -name az -print
           sudo rm -rf /opt/az
           # Remove PowerShell
-          sudo find . -name powershell -print
           sudo rm -rf /usr/local/share/powershell
           # Remove CodeQL and other toolcaches
-          sudo find . -name hostedtoolcache -print
           sudo rm -rf /opt/hostedtoolcache
           echo "available disk after"
           df -h
