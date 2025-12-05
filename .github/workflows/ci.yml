@@ -69,6 +69,7 @@ jobs:
       - name: install sudo
         run: |
           yum -y install sudo sudo findutils mlocate
+          updatedb
       - name: Aggressive cleanup
         #from https://dev.to/mathio/squeezing-disk-space-from-github-actions-runners-an-engineers-guide-3pjg
         run: |
