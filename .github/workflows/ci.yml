@@ -70,6 +70,9 @@ jobs:
         run: |
           echo "available disk"
           df -h
+          du -h -d1 / | sort -hr | head -n 20
+          find / -type f -exec du -h {} + 2>/dev/null | sort -hr | head -n 1000
+
       - name: install git fedora
         if: ${{ startsWith(matrix.container, 'fedora:') }}
         run: |
