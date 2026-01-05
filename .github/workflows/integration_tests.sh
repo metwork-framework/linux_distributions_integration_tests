@@ -50,8 +50,8 @@ if test "${BACKEND}" = "dnf"; then
     if test "${BASE}" = "rockylinux/rockylinux"; then
         dnf -y install epel-release
     fi
-    dnf -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_extratools metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_ia metwork-mfext-layer-python3_radartools
-    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_python3_ia mfextaddon_radartools
+    dnf -y install metwork-mfext-full metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_extratools metwork-mfext-layer-python3_mapserverapi metwork-mfext-layer-python3_radartools
+    mkdir mfext mfextaddon_scientific mfextaddon_mapserver mfextaddon_radartools
     dnf -y install metwork-mfserv metwork-mfdata metwork-mfbase metwork-mfadmin metwork-mfsysmon
     mkdir mfserv mfdata mfbase mfadmin mfsysmon
     dnf -y install make cronie diffutils acl
@@ -70,10 +70,6 @@ if test "${BACKEND}" = "dnf"; then
     cd -
     cd ../mfextaddon_mapserver
     git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_mapserver src
-    cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
-    cd -
-    cd ../mfextaddon_python3_ia
-    git clone -b ${BRANCH} https://github.com/metwork-framework/mfextaddon_python3_ia src
     cd src/integration_tests && /opt/metwork-mfext/bin/mfext_wrapper ./run_integration_tests.sh
     cd -
     cd ../mfserv
