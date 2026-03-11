@@ -64,6 +64,7 @@ jobs:
           - fedora:42
           - fedora:43
           - fedora:44
+          - fedora:45
     container:
       image: ${{ matrix.container }}
     steps:
@@ -92,7 +93,7 @@ jobs:
         run: |
           yes |urpmi lib64apr1_0 lib64apr-util1_0 git
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: ${{ github.event.client_payload.branch || github.event.inputs.workflow_branch || github.ref }}
