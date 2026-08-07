@@ -55,6 +55,7 @@ jobs:
           - rockylinux/rockylinux:9.7
           - rockylinux/rockylinux:10.0
           - rockylinux/rockylinux:10.1
+          - rockylinux/rockylinux:10.2
           - fedora:34
           - fedora:35
           - fedora:36
