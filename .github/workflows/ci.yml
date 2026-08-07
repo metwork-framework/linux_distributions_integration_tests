@@ -52,7 +52,10 @@ jobs:
           - rockylinux/rockylinux:9.4
           - rockylinux/rockylinux:9.5
           - rockylinux/rockylinux:9.6
+          - rockylinux/rockylinux:9.7
           - rockylinux/rockylinux:10.0
+          - rockylinux/rockylinux:10.1
+          - rockylinux/rockylinux:10.2
           - fedora:34
           - fedora:35
           - fedora:36
@@ -63,6 +66,8 @@ jobs:
           - fedora:41
           - fedora:42
           - fedora:43
+          - fedora:44
+          - fedora:45
     container:
       image: ${{ matrix.container }}
     steps:
