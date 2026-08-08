@@ -9,6 +9,8 @@
 - add Metwork installation test on rockylinux 10.0
 - add test on fedora 44
 - add tests on rockylinux 9.7 and 10.1 (#139)
+- add test on fedora 45
 - add test on fedora 45 (#140)
+- add test on rockylinux 10.2
 
 
