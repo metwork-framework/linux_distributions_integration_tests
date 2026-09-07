@@ -67,6 +67,13 @@ jobs:
           - fedora:40
           - fedora:41
           - fedora:42
+<<<<<<< HEAD
+=======
+          - fedora:43
+          - fedora:44
+          - fedora:45
+          - fedora:46
+>>>>>>> b0b7bd5 (feat: add test on fedora 46 (#147))
     container:
       image: ${{ matrix.container }}
     steps:
