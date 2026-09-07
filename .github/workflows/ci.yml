@@ -68,6 +68,7 @@ jobs:
           - fedora:43
           - fedora:44
           - fedora:45
+          - fedora:46
     container:
       image: ${{ matrix.container }}
     steps:
