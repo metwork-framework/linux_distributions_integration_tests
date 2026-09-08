@@ -12,5 +12,6 @@
 - add test on fedora 45
 - add test on fedora 45 (#140)
 - add test on rockylinux 10.2
+- add test on fedora 46 (#147)
 
 
